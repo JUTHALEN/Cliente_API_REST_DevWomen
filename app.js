@@ -1,6 +1,6 @@
 function loadBootcamps() {
   const username = "judith@gmail.com";
-  const password = "123456"; 
+  const password = "Temp2023$$"; 
   const authHeaderValue = "Basic " + btoa(username + ":" + password);
 
   fetch("http://localhost:8080/bootcamps", {
