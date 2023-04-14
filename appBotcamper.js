@@ -22,11 +22,8 @@ function loadBootcampers() {
           const nombre = document.createElement("td");
           const primerApellido = document.createElement("td");
           const segundoApellido = document.createElement("td");
-          const genero = document.createElement("td");
-          const salario = document.createElement("td");
           const formacion = document.createElement("td");
           const foto = document.createElement("td");
-          const fechaNacimiento = document.createElement("td");
           const fechaAlta = document.createElement("td");
           const bootcamp = document.createElement("td");
             bootcamp.textContent = bootcamper.bootcamp.nombre;
@@ -37,27 +34,21 @@ function loadBootcampers() {
           nombre.textContent = bootcamper.nombre;
           primerApellido.textContent = bootcamper.primerApellido;
           segundoApellido.textContent = bootcamper.segundoApellido;
-          genero.textContent = bootcamper.genero;
-          salario.textContent = bootcamper.salario;
           formacion.textContent = bootcamper.formacion;
-          fechaNacimiento.textContent = new Intl.DateTimeFormat('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' }).format(new Date(bootcamper.fechaNacimiento));
-          fechaAlta.textContent = bootcamper.fechaAlta;
+          fechaAlta.textContent =new Intl.DateTimeFormat('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' }).format(new Date(bootcamper.fechaAlta));
           bootcamp.textContent = bootcamper.bootcamp.nombre;
   
           // Añadir la imagen de la foto
           const img = document.createElement("img");
-          img.src = "../../img/" + bootcamper.foto;
+          img.src = "http://localhost:8080/bootcampers/downloadFile/" + bootcampers.foto;
           img.alt = "Foto de " + bootcamper.nombre;
           foto.appendChild(img);
   
           row.appendChild(nombre);
           row.appendChild(primerApellido);
           row.appendChild(segundoApellido);
-          row.appendChild(genero);
-          row.appendChild(salario);
           row.appendChild(formacion);
           row.appendChild(foto);
-          row.appendChild(fechaNacimiento);
           row.appendChild(fechaAlta);
           row.appendChild(bootcamp);
           tbody.appendChild(row);
@@ -70,4 +61,11 @@ function loadBootcampers() {
   
   // Llamar a la función para cargar los bootcampers al cargar la página
   window.addEventListener("load", loadBootcampers);
+  
+  fetch("http://localhost:8080/bootcampers/downloadFile", {
+      headers: {
+        "Authorization": authHeaderValue
+  }});
+
+      
   
